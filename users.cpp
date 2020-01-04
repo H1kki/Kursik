@@ -7,7 +7,7 @@ users::users(QWidget *parent) :
 {
     ui->setupUi(this);
     login = new loginWindow;
-    connect(login, &loginWindow::window, this, &users::show);
+    connect(login, &loginWindow::loginwindow, this, &users::show);
 }
 
 users::~users()

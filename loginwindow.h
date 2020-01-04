@@ -2,6 +2,8 @@
 #define LOGINWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include "mainwindow.h"
 
 namespace Ui {
 class loginWindow;
@@ -16,10 +18,15 @@ public:
     ~loginWindow();
 
 signals:
-    void window();
+    void loginwindow();
+
+private slots:
+    void on_signIn_clicked();
 
 private:
     Ui::loginWindow *ui;
+    MainWindow *mainw;
+    bool checkLog();
 };
 
 #endif // LOGINWINDOW_H

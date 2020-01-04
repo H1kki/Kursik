@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtSql/QSqlTableModel>
 #include "database.h"
+#include "insertdata.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,16 +19,20 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_insertData_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_deleteData_clicked();
 
     void on_tableView_clicked(const QModelIndex &index);
+
+signals:
+    void mainwindow();
 
 private:
     Ui::MainWindow  *ui;
     DataBase        *db;
     QSqlTableModel  *model;
+    insertData *ins;
 
 private:
     void setupModel(const QString &tableName, const QStringList &headers);

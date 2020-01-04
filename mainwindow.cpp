@@ -6,13 +6,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ins = new insertData;
+    connect(ins, &insertData::insertWindow, this, &MainWindow::show);
 
     db = new DataBase();
     db->connectToDataBase();
 
     this->setupModel(TABLE,
                      QStringList() << trUtf8("id")
-                                   << trUtf8("Ім'я")
+                                   << trUtf8("Назва товару")
                                    << trUtf8("Кількість")
                                    << trUtf8("Ціна")
                                    << trUtf8("Дата добавлення")
@@ -50,29 +52,14 @@ void MainWindow::createUI()
     model->select();
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_insertData_clicked()
 {
-    QVariantList data;
-    data.append(ui->lineEdit->text());
-    data.append(ui->lineEdit_2->text());
-    data.append(ui->lineEdit_3->text());
-    data.append(QDate::currentDate());
-    db->inserIntoTable(data);
-    createUI();
-
+    ins->show();
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_deleteData_clicked()
 {
-    //int id = ui->tableView->currentIndex().row();
-    //id+=1;
-    //QString name = ui->tableView->model()->columnCount();
-    //db->deleteData(id);
-    //int rowCount = ui->tableView->model()->rowCount();
-    //for (int i = id;i<=rowCount;i++) {
-    //    db->update(i);
-    //}
-    ui->pushButton_2->setEnabled(false);
+    ui->deleteData->setEnabled(false);
     int selectedRow = ui->tableView->currentIndex().row();
     if (selectedRow >=0)
         model->removeRow(selectedRow);
@@ -82,5 +69,5 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    ui->pushButton_2->setEnabled(true);
+    ui->deleteData->setEnabled(true);
 }

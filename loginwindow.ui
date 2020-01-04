@@ -31,12 +31,12 @@
     <string>Увійти</string>
    </property>
   </widget>
-  <widget class="QLabel" name="login">
+  <widget class="QLabel" name="loginLable">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>10</y>
-     <width>31</width>
+     <width>41</width>
      <height>16</height>
     </rect>
    </property>
@@ -44,12 +44,12 @@
     <string>Логін</string>
    </property>
   </widget>
-  <widget class="QLabel" name="pass">
+  <widget class="QLabel" name="passLable">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>40</y>
-     <width>41</width>
+     <width>51</width>
      <height>16</height>
     </rect>
    </property>
@@ -57,7 +57,7 @@
     <string>Пароль</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="loginText">
+  <widget class="QLineEdit" name="login">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -67,7 +67,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="loginPass">
+  <widget class="QLineEdit" name="pass">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -75,6 +75,12 @@
      <width>113</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
  </widget>
