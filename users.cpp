@@ -6,8 +6,7 @@ users::users(QWidget *parent) :
     ui(new Ui::users)
 {
     ui->setupUi(this);
-    login = new loginWindow;
-    connect(login, &loginWindow::loginwindow, this, &users::show);
+    this->setWindowTitle("Select your champion");
 }
 
 users::~users()
@@ -17,6 +16,9 @@ users::~users()
 
 void users::on_adminButton_clicked()
 {
+    loginWindow *login = new loginWindow;
+
+    login->setWindowTitle("Login");
     login->show();
     this->close();
 }

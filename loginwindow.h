@@ -17,15 +17,12 @@ public:
     explicit loginWindow(QWidget *parent = nullptr);
     ~loginWindow();
 
-signals:
-    void loginwindow();
 
 private slots:
     void on_signIn_clicked();
 
 private:
     Ui::loginWindow *ui;
-    MainWindow *mainw;
     bool checkLog();
 };
 

@@ -6,8 +6,6 @@ loginWindow::loginWindow(QWidget *parent) :
     ui(new Ui::loginWindow)
 {
     ui->setupUi(this);
-    mainw = new MainWindow;
-    connect(mainw, &MainWindow::mainwindow, this, &loginWindow::show);
 }
 
 loginWindow::~loginWindow()
@@ -18,11 +16,12 @@ loginWindow::~loginWindow()
 
 bool loginWindow::checkLog()
 {
-    if(ui->pass->text() == "admin" && ui->login->text() == "admin")
+    if(ui->pass->text() == "admin" && ui->login->text() == "admin"){
         return true;
+    }
     else
     {
-        QMessageBox::about(this,"PIZDA","КТО ПРОЧИТАЛ ТОТ ЗАЙЧИК");
+        QMessageBox::about(this,"Error","Неправильний пароль або логін");
         return false;
     }
 }
@@ -30,7 +29,9 @@ bool loginWindow::checkLog()
 void loginWindow::on_signIn_clicked()
 {
     if(checkLog()){
-        mainw->show();
+        MainWindow *adminWindow = new MainWindow;
+        adminWindow->setWindowTitle("Admin Window");
+        adminWindow->show();
         this->close();
     }
 }

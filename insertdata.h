@@ -20,7 +20,7 @@ public:
     ~insertData();
 
 signals:
-    void insertWindow();
+    void signalReady();
 
 private slots:
     void on_insert_clicked();

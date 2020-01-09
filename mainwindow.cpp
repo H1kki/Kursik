@@ -6,8 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ins = new insertData;
-    connect(ins, &insertData::insertWindow, this, &MainWindow::show);
 
     db = new DataBase();
     db->connectToDataBase();
@@ -52,11 +50,17 @@ void MainWindow::createUI()
     model->select();
 }
 
+//Запис данних в базу
 void MainWindow::on_insertData_clicked()
 {
-    ins->show();
+    insertData *initData = new insertData;
+    connect(initData, SIGNAL(signalReady()), this, SLOT(slotUpdateModels()));
+
+    initData->setWindowTitle("Ввід данних");
+    initData->exec();
 }
 
+//Видалення записів з бази данних
 void MainWindow::on_deleteData_clicked()
 {
     ui->deleteData->setEnabled(false);
@@ -70,4 +74,10 @@ void MainWindow::on_deleteData_clicked()
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
     ui->deleteData->setEnabled(true);
+}
+
+//Слот для оновлення данних в таблиці
+void MainWindow::slotUpdateModels()
+{
+    model->select();
 }
